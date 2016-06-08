@@ -11,6 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.mod.driversanfranciscraft.init.Items;
 	
 	@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 	
@@ -22,10 +23,21 @@ import net.minecraft.item.Item;
 		@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY)
 		public static net.mod.driversanfranciscraft.proxy.CommonProxy proxy;
 		
+		public static CreativeTabs tabDriverSanFrancisCraft = new CreativeTabs("tabDriverSanFrancisCraft")
+		{
+			@SideOnly(Side.CLIENT)
+			public Item getTabIconItem()
+			{
+				return Items.JurassicParkJeep;
+			}
+		};
+		
+		
 		@EventHandler 
 		public void preInit(FMLPreInitializationEvent event)
 		{
-			
+			Items.init();
+			Items.register();
 		}
 		
 		@EventHandler
@@ -41,4 +53,10 @@ import net.minecraft.item.Item;
 		}
 		
 	}
+
+
+
+
+
+
 
